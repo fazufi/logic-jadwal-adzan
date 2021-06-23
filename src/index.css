@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .row> .active{
+  border-left: 2px solid #000 !important;
+} */
+.row a:hover{
+  border-left: 2px solid #ddd;
+}

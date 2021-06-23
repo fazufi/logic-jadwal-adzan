@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+
 
 export default class App extends Component {
   state = {
@@ -18,9 +20,17 @@ export default class App extends Component {
     hari: ["senin", "selasa", "rabu", "kamis", "jum'at", "sabtu", "ahad"],
     jadwal: [],
     durasi: 7,
+    active: "",
+  };
+  isClick = () => {
+    this.setState({ active: "bg-primary" });
   };
   componentDidMount() {
     this.allocate(this.state.durasi);
+    // const data = document.getElementsByClassName("adzan");
+    // ReactDOM.findDOMNode(this).addEventListener("click", () => {
+    //   this.isClick();
+    // })
   }
   allocate = (durasi) => {
     const { user, tugas } = this.state;
@@ -62,17 +72,19 @@ export default class App extends Component {
       const x = i % 10;
       //   console.log(parseInt(i / 10) % hari.length);
       if (x === 0) {
-        html += `<div class="row">
+        html += `<div class="row ">
         <div class="col-md-1">${
           haribaru[parseInt(i / 10) % haribaru.length]
         }</div>
-        <div class="col-md-1">${d}</div>`;
+        <div class="col-md-1 ${this.state.active}">${d}</div>`;
       } else if (x === 9) {
-        html += `<div class="col-md-1">${d}</div></div>`;
+        html += `<div class="col-md-1 ${this.state.active}"  >${d}</div></div>`;
       } else {
-        html += `<div class="col-md-1">${d}</div>`;
+        html += `<div class="col-md-1 ${this.state.active}"  >${d}</div>`;
       }
     });
+    
+    console.log("iki", new Date(2021, 6));
     return (
       <div className="container-fluid">
         <div className="row">
